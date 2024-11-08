@@ -121,7 +121,7 @@ function open(timed, mode)
     end
 
     if timed then
-        balloon.close_timer = mode and (mode == 15 or 7) and 3 or settings.NoPromptCloseDelay
+        balloon.close_timer = mode and (mode == 15 or mode == 7) and 3 or settings.NoPromptCloseDelay
         ui.timer_text:text(''..balloon.close_timer)
     end
 
