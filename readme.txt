@@ -135,6 +135,9 @@ Windower4 unofficial add-on Balloon
 		Toggleable globally with //bl portrait.
 		Themes can choose to include support for them or not.
 		Themes can also have a slightly different layout with/without portraits.
+	ver 0.14 8/11/24 Translation support.
+		Added translation support using Google translate api.
+		Only Spanish, Italian, Catalan, Galician, Basque supported. (More to be added in the future)
 
 Send any feedback/questions to Ghosty in the #unofficial-addons channel on the Windower Discord.
 Or open an issue on the GitHub repo at https://github.com/StarlitGhost/Balloon

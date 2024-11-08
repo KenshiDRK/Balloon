@@ -238,12 +238,13 @@ function ui:set_type(type)
         [144] = self._dialogue_settings, -- prompt-less npc text
         [146] = self._system_settings, -- "You hear something moving to the east..."
         [15] = self._system_settings, -- cutscene emote
+        [7] = self._system_settings, -- no target emote
     }
     self._type = types[type]
 
     self:update_message_bg(self._type.path)
     self.message_text:alpha(self._type.color.alpha)
-    if type == 15 then
+    if type == 15 or type == 7 then
         local emote_col = self._system_settings.emote:split(',')
         self.message_text:color(tonumber(emote_col[1]), tonumber(emote_col[2]), tonumber(emote_col[3]))
     else
@@ -290,8 +291,8 @@ function ui:set_character(name)
 
     -- set a custom balloon based on npc name, if an image for them exists
     local fname = windower.addon_path..'themes/'..self._theme..('/characters/%s.png'):format(name)
-	if windower.file_exists(fname) then
-		self:update_message_bg(fname)
+    if windower.file_exists(fname) then
+        self:update_message_bg(fname)
         return true
     end
     return false
@@ -304,37 +305,37 @@ function ui:update_message_bg(path)
 end
 
 local function Tokenize(str)
-	local result = {}
-	for word in str:gmatch("%S+") do
-		result[#result+1] = word
-	end
-	return result
+    local result = {}
+    for word in str:gmatch("%S+") do
+        result[#result+1] = word
+    end
+    return result
 end
 
 function ui:wrap_text(str)
-	local line_length = self._theme_options.message.max_length+1
+    local line_length = self._theme_options.message.max_length+1
     if self._has_portrait and self._theme_options.portrait.max_length then
         line_length = self._theme_options.portrait.max_length+1
     end
-	local length_left = line_length
-	local result = {}
-	local line = {}
+    local length_left = line_length
+    local result = {}
+    local line = {}
 
-	for _, word in ipairs(Tokenize(str)) do
-		if #word+1 > length_left then
-			table.insert(result, table.concat(line, ' '))
-			line = {word}
-			length_left = line_length - #word
-		else
-			table.insert(line, word)
-			length_left = length_left - (#word + 1)
-		end
-	end
+    for _, word in ipairs(Tokenize(str)) do
+        if #word+1 > length_left then
+            table.insert(result, table.concat(line, ' '))
+            line = {word}
+            length_left = line_length - #word
+        else
+            table.insert(line, word)
+            length_left = length_left - (#word + 1)
+        end
+    end
 
-	table.insert(result, table.concat(line, ' '))
-	local new_str = table.concat(result, '\n ')
+    table.insert(result, table.concat(line, ' '))
+    local new_str = table.concat(result, '\n ')
 
-	return new_str
+    return new_str
 end
 
 function ui:set_message(message)
@@ -347,18 +348,18 @@ function ui:set_message(message)
 end
 
 local function smooth_sawtooth(time, frequency)
-	local x = time * frequency
-	return(-math.sin(x-math.sin(x)/2))
+    local x = time * frequency
+    return(-math.sin(x-math.sin(x)/2))
 end
 
 function ui:animate_prompt(frame_count)
     if not self._theme_options.prompt then return end
 
     local amplitude = 2.5
-	local bounceOffset = smooth_sawtooth(frame_count/60, 6) * amplitude
+    local bounceOffset = smooth_sawtooth(frame_count/60, 6) * amplitude
 
-	local pos_y = self.message_background:pos_y() + (self._theme_options.prompt.offset_y + bounceOffset) * self._scale
-	self.prompt:pos_y(pos_y)
+    local pos_y = self.message_background:pos_y() + (self._theme_options.prompt.offset_y + bounceOffset) * self._scale
+    self.prompt:pos_y(pos_y)
 end
 
 function ui:animate_text_display(chars_per_frame)

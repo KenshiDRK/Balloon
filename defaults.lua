@@ -8,6 +8,9 @@ defaults.TextSpeed = 10
 defaults.Theme = 'default'
 defaults.Scale = 1.0
 defaults.ShowPortraits = true
+defaults.Translation = false
+defaults.Language_name = 'Castellano'
+defaults.Language_code = 'es'
 
 local windower_settings = windower.get_windower_settings()
 defaults.Position = {}
