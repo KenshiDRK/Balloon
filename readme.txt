@@ -75,6 +75,10 @@ Windower4 unofficial add-on Balloon
 	Toggle advancement prompt animation.
 	//Bl portrait
 	Toggle character portraits.
+	//Bl translate
+	Toggle balloon auto translation
+	//Bl language <language>
+	Changes language to translate (check languages.lua)
 	//Bl help
 	Help display
 

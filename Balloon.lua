@@ -333,7 +333,7 @@ function process_balloon(npc_text, mode)
             v = string.gsub(v, 'Forrr ', "For ")
         end
         
-        v = ui:wrap_text(settings.Translation and get_translation(v, settings.Language_code) or v)
+        v = ui:wrap_text(settings.Translation and get_translation(v, language[settings.lang]) or v)
 
         v = " " .. v
         v = string.gsub(v, "@R3S3T", "\\cr")
@@ -548,7 +548,8 @@ windower.register_event("addon command", function(command, ...)
         if args[1]:lower() and language[args[1]:lower()] then
             if settings.Language_name == language[args[1]:lower()][name] then
                 log("Language already set to "..settings.Language_name)
-            else    
+            else
+                settings.lang = args[1]:lower()
                 settings.Language_name = language[args[1]:lower()].name
                 settings.Language_code = language[args[1]:lower()].code
                 log("Language - " ..settings.Language_name)
