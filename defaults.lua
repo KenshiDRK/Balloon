@@ -9,6 +9,7 @@ defaults.Theme = 'default'
 defaults.Scale = 1.0
 defaults.ShowPortraits = true
 defaults.Translation = false
+defaults.lang = 'spanish'
 defaults.Language_name = 'Castellano'
 defaults.Language_code = 'es'
 
