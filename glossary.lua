@@ -2,6 +2,7 @@ return {
     --NPC Names
     ["Iron Eater"] = "Miguel",
     ["Louverance"] = "Carlos",
+    ["Shadow Lord"] = "wodahSdroL",
     ["Carbuncle"] = "Cabruncle",
     ["Ulmia"] = "Ulmna",
     ["Mathilde"] = "Matilde",
@@ -9,6 +10,7 @@ return {
     ["La Theine Plateau"] = "La TheineuaetalP",
     ["Beaucedine Glacier"] = "BeaucedinereicalG",
     ["East Ronfaure"] = "tsaE Ronfaure",
+    ["Northern San d'Oria"] = "nrehtroN San d'Oria",
     ["South Gustaberg"] = "htuoS Gustaberg",
     ["East Sarutabaruta"] = "tsaE Sarutabaruta",
     ["Konschtat Highlands"] = "Konschtat sdnalhgiH",
@@ -26,6 +28,7 @@ return {
     ["Meriphataud Mountains"] = "Meriphataud sniatnuoM",
     ["Eastern Altepa Desert"] = "nretsaE Altepa treseD",
     ["Yhoator Jungle"] = "Yhoator elgnuJ",
+    ["Sealion's Den"] = "s'noilaeA Ned",
     ["Sanctuary of Zi'Tah"] = "ehT yrautcnaSof Zi'Tah",
     ["Misareaux Coast"] = "xuaerasiMtsaoC",
     ["Labyrinth of Onzozo"] = "htnirybaL ofozoznO",
@@ -50,8 +53,10 @@ return {
     ["Delkfutt's Tower"] = "ttufkleDrewoT",
     ["Metalworks"] = "skrowlateM",
     ["Upper Jeuno"] = "UpperonueJ",
+    ["Lower Jeuno"] = "rewoLonueJ",
     ["Marble Bridge"] = "elbraMeddirB",
     ["Cape Riverne"] = "epaC Riverne",
+    ["Garden of Ru'Hmet"] = "nedraGof Ru'meth",
     --Special Places
     ["Mog House"] = "MogesuoH",
     --Special Groups
@@ -76,4 +81,7 @@ return {
     ["Trust"] = "tsurT",
     ["hallmarks"] = "skramllah",
     ["Signet"] = "tengSi"
+    ["Astral Candescence"] = "lartsA ecnecsednaD",
+    ["Astral Wind"] = "lartsAdinW",
+    ["Astral Plinth"] = "lartsAhtnilP",
 }
