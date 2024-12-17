@@ -80,7 +80,7 @@ return {
     ["Trust Initiative"] = "tsurT evitaitinI",
     ["Trust"] = "tsurT",
     ["hallmarks"] = "skramllah",
-    ["Signet"] = "tengSi"
+    ["Signet"] = "tengSi",
     ["Astral Candescence"] = "lartsA ecnecsednaD",
     ["Astral Wind"] = "lartsAdinW",
     ["Astral Plinth"] = "lartsAhtnilP",
