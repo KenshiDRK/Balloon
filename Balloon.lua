@@ -329,11 +329,18 @@ function process_balloon(npc_text, mode)
         v = string.gsub(v, "^?([%w%.'(<“])", "%1")
         v = string.gsub(v, '(%w)(%.%.%.+)([%w“])', "%1%2 %3") --add a space after elipses to allow better line splitting
         v = string.gsub(v, '([%w”])%-%-([%w%p])', "%1-- %2") --same for double dashes
-        if settings.Translation then
+        local tries = 5
+        if settings.Translation and v ~= "" then
             v = string.gsub(v, 'Forrr ', "For ")
+            local t = get_translation(v, language[settings.lang])
+            while t == nil and tries > 0 do
+                tries = tries - 1
+                t = get_translation(v, language[settings.lang])
+            end
+            v = t ~= nil and t or v
         end
         
-        v = ui:wrap_text(settings.Translation and get_translation(v, language[settings.lang]) or v)
+        v = ui:wrap_text(v)
 
         v = " " .. v
         v = string.gsub(v, "@R3S3T", "\\cr")

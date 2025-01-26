@@ -78,8 +78,14 @@ local function make_url(text, language)
 end
 
 function get_translation(text, language)
-    local reply = http.request(make_url(text, language.code))
-    local data = json.decode(reply)
+    local reply, status_code, headers, status_text = http.request(make_url(text, language.code))
+    if not reply or status_code ~= 200 then
+        return nil
+    end
+    local data, decode_err = json.decode(reply)
+    if not data or decode_err then
+        return nil
+    end
     local output_table = {}
     local output = ""
     if data and data[1] then
@@ -88,7 +94,7 @@ function get_translation(text, language)
         end
         output = table.concat(output_table)
     else
-        return ""
+        return nil
     end
     
     local final_text = restore_glossary(output, inverted_glossary)
