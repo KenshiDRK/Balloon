@@ -32,7 +32,7 @@ end
 local function restore_glossary(text, inverted_glossary)
     for replacement, original in pairs(inverted_glossary) do
         local escaped_replacement = escape_special_characters(replacement)
-        text = text:gsub(escaped_replacement, original)
+        text = string.gsub(string.lower(text), string.lower(escaped_replacement), original)
     end
     return text
 end
@@ -41,7 +41,7 @@ local no_translate = {}
 local function apply_colored_text(text)
     local count = 0
     local modified_text = text
-    for word in string.gmatch(text, "@%u%u%u%u(.-)@R3S3T") do
+    for word in string.gmatch(text, "@[A-Z0-9][A-Z0-9][A-Z0-9][A-Z0-9](.-)@R3S3T") do
         count = count + 1
         local escaped_word = escape_special_characters(word)
         table.insert(no_translate, word)
@@ -52,7 +52,7 @@ end
 
 local function restore_colored_text(text)
     for k = 1, #no_translate do
-        text = string.gsub(text, "@PLACEHOLDER" .. k .. "%.?%s*", no_translate[k])
+        text = string.gsub(string.lower(text), "@placeholder" .. k .. "%.?%s*", no_translate[k])
     end
     no_translate = {}
     return text
