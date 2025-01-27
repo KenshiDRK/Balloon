@@ -29,7 +29,7 @@
 --
 _addon.author = 'Originally by Hando, English support added by Yuki & Kenshi, themes added by Ghosty'
 _addon.name = 'Balloon'
-_addon.version = '0.14'
+_addon.version = '0.15'
 _addon.commands = {'balloon','bl'}
 
 require('luau')
@@ -305,14 +305,14 @@ function process_balloon(npc_text, mode)
 
     local message = ""
     for k,v in ipairs(mess) do
-        v = string.gsub(v, string.char(0x1E,0x01), "@r3s3t") --color code 1 (black/reset)
-        v = string.gsub(v, string.char(0x1E,0x02), "@1t3m") --color code 2 (green/regular items)
-        v = string.gsub(v, string.char(0x1E,0x03), "@k3y1") --color code 3 (blue/key items)
-        v = string.gsub(v, string.char(0x1E,0x04), "@blu3") --color code 4 (blue/???)
-        v = string.gsub(v, string.char(0x1E,0x05), "@m4g3") --color code 5 (magenta/equipment?)
-        v = string.gsub(v, string.char(0x1E,0x06), "@cy4n") --color code 6 (cyan/???)
-        v = string.gsub(v, string.char(0x1E,0x07), "@y3ll") --color code 7 (yellow/???)
-        v = string.gsub(v, string.char(0x1E,0x08), "@or4n") --color code 8 (orange/RoE objectives?)
+        v = string.gsub(v, string.char(0x1E,0x01), "@93537") --color code 1 (black/reset)
+        v = string.gsub(v, string.char(0x1E,0x02), "@1111") --color code 2 (green/regular items)
+        v = string.gsub(v, string.char(0x1E,0x03), "@2222") --color code 3 (blue/key items)
+        v = string.gsub(v, string.char(0x1E,0x04), "@3333") --color code 4 (blue/???)
+        v = string.gsub(v, string.char(0x1E,0x05), "@4444") --color code 5 (magenta/equipment?)
+        v = string.gsub(v, string.char(0x1E,0x06), "@5555") --color code 6 (cyan/???)
+        v = string.gsub(v, string.char(0x1E,0x07), "@6666") --color code 7 (yellow/???)
+        v = string.gsub(v, string.char(0x1E,0x08), "@7777") --color code 8 (orange/RoE objectives?)
         v = string.gsub(v, string.char(0x1F,0x0F), "") --cutscene emote color code (handled by the message type instead)
         v = string.gsub(v, PROMPT_CHARS, "")
         -- these are the auto-prompt characters
@@ -329,7 +329,7 @@ function process_balloon(npc_text, mode)
         v = string.gsub(v, "^?([%w%.'(<“])", "%1")
         v = string.gsub(v, '(%w)(%.%.%.+)([%w“])', "%1%2 %3") --add a space after elipses to allow better line splitting
         v = string.gsub(v, '([%w”])%-%-([%w%p])', "%1-- %2") --same for double dashes
-        local tries = 5
+        local tries = 10
         if settings.Translation and v ~= "" then
             v = string.gsub(v, 'Forrr ', "For ")
             local t = get_translation(v, language[settings.lang])
@@ -343,14 +343,14 @@ function process_balloon(npc_text, mode)
         v = ui:wrap_text(v)
 
         v = " " .. v
-        v = string.gsub(v, "@r3s3t", "\\cr")
-        v = string.gsub(v, "@1t3m", "\\cs("..ui._type.items..")")
-        v = string.gsub(v, "@k3y1", "\\cs("..ui._type.keyitems..")")
-        v = string.gsub(v, "@blu3", "\\cs("..ui._type.keyitems..")")
-        v = string.gsub(v, "@m4g3", "\\cs("..ui._type.gear..")")
-        v = string.gsub(v, "@cy4n", "\\cs(0,159,173)")
-        v = string.gsub(v, "@y3ll", "\\cs(156,149,19)")
-        v = string.gsub(v, "@or4n", "\\cs("..ui._type.roe..")")
+        v = string.gsub(v, "@93537", "\\cr")
+        v = string.gsub(v, "@1111", "\\cs("..ui._type.items..")")
+        v = string.gsub(v, "@2222", "\\cs("..ui._type.keyitems..")")
+        v = string.gsub(v, "@3333", "\\cs("..ui._type.keyitems..")")
+        v = string.gsub(v, "@4444", "\\cs("..ui._type.gear..")")
+        v = string.gsub(v, "@5555", "\\cs(0,159,173)")
+        v = string.gsub(v, "@6666", "\\cs(156,149,19)")
+        v = string.gsub(v, "@7777", "\\cs("..ui._type.roe..")")
         --TODO: theme settings for these element colors
         v = string.gsub(v, "%[BL_Fire]", "\\cs(255,0,0)Fire \\cr")
         v = string.gsub(v, "%[BL_Ice]", "\\cs(0,255,255)Ice \\cr")
