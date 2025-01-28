@@ -4,6 +4,7 @@ local url = require("socket.url")
 local glossary = require("glossary")
 local res = require("resources")
 local plurals_list = res.items_grammar
+local fixes = require("fixes")
 https.TIMEOUT = 0.5
 
 local inverted_glossary = {}
@@ -71,6 +72,19 @@ local function adjust_articles_for_plurals(text, language)
     return text
 end
 
+local function aply_fixes(text, language)
+    if language then
+        if fixes[language] then
+            for wrong, fix in pairs(fixes[language]) do
+                wrong = escape_special_characters(wrong)
+                text = text:gsub(wrong, fix)
+            end
+            return text
+        end
+    end
+    return text
+end
+
 local function make_url(text, language)
     local modified_text = apply_colored_text(text)
     modified_text = apply_glossary(modified_text, glossary)
@@ -103,16 +117,13 @@ function get_translation(text, language)
 
     local output_table = {}
     for _, v in ipairs(data[1] or {}) do
-        if not v[8][1][2] then --make sure to use the online model
-            table.insert(output_table, v[1])
-        else
-            return nil
-        end
+        table.insert(output_table, v[1])
     end
 
     local final_text = restore_glossary(table.concat(output_table), inverted_glossary)
     final_text = restore_colored_text(final_text)
     final_text = adjust_articles_for_plurals(final_text, language.articles)
+    final_text = aply_fixes(final_text, language.code)
 
     return final_text
 end
